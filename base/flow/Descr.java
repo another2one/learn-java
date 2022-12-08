@@ -20,10 +20,18 @@ public class Descr {
         for (int i = 0; i < 3; i++) {
             System.out.println(i);
         }
+        // for in
         int[] numbers = {0, 1, 2};
         for (int i : numbers) {
             System.out.println(i);
-        } 
+        }
+        // for label
+        charLoop:
+        for (int i = 1; i < 3; i++) {
+            if (i == 2) {
+                break charLoop;
+            }
+        }
 
         // if else
         if (a == 1) {

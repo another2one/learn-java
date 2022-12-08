@@ -1,7 +1,9 @@
 package base.trans;
 
+import java.util.Arrays;
+
 // 类型转换
-public class Trans {
+public class Descr {
 
     final double PI = 3.1415927; // 常量
     
@@ -10,6 +12,7 @@ public class Trans {
          numberAndString();
          numberAndChar();
          charAndString();
+         bytesAndString();
     }
 
     public static void numberAndNumber() {
@@ -37,6 +40,15 @@ public class Trans {
             Double.valueOf(1.71).intValue(),
             Math.round(1.71) // ceil floor
         );
+    }
+
+    public static void bytesAndString() {
+        byte[] helloArray = { 'r', 'u', 'n', 'o', 'o', 'b'};
+        String helloString = new String(helloArray);
+        helloArray = helloString.getBytes();
+        System.out.println("--- bytesAndString ---");
+        System.out.println(helloString);
+        System.out.println(Arrays.toString(helloArray));
     }
 
     public static void charAndString() {
