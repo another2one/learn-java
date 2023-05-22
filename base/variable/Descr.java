@@ -41,5 +41,16 @@ public class Descr {
         // int i = k + 10; // 作用域问题
         // int i; // 必须初始化才能使用
         // System.out.println(i);
+
+        System.out.printf("%s \n", Test.i);
+        Test t = new Test();
+        t.proFunc();
+        t.defFunc();
+        // 不能访问其他包 protected
+//        TypeTest tt = new TypeTest();
+//        tt.proFunc();
+        // 可以访问同一包下 protected
+        BaseTest bt = new BaseTest();
+        bt.proFunc();
     }
 }

@@ -1,5 +1,7 @@
 package base.arr;
 
+import java.util.Arrays;
+
 public class Descr {
 
     public static void main(String[] args) {
@@ -13,18 +15,22 @@ public class Descr {
 
         System.out.println(myList[1]);
 
-        // 循环遍历
+        // 循环遍历 第一种方式
         for (double elem : myList) {
             System.out.println(elem);
         }
 
+        // 循环遍历 第二种方式
         for (int i = 0; i < myList.length; i++) {
             System.out.println(myList[i]);
         }
 
         // 多维数组
-        String[][] str = new String[3][4];
-        System.out.println(str);
+        String[][] strArr = new String[3][4];
+        // 修改
+        strArr[1][3] = "4";
+        // 打印
+        System.out.println(Arrays.deepToString(strArr));
 
         // Arrays 类
         

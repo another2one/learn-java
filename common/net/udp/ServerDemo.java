@@ -7,10 +7,9 @@ import java.net.InetAddress;
 
 public class ServerDemo {
     public static int clientPort = 91;
-    public static int serverPort = 91;
+    public static int serverPort = 92;
     public static void main(String[] args) {
-        try {
-            DatagramSocket server = new DatagramSocket(serverPort);
+        try (DatagramSocket server = new DatagramSocket(serverPort)) {
             DatagramPacket packet = new DatagramPacket(new byte[1024], 1024);
             server.receive(packet);
             System.out.printf("%s:%d %s \n", packet.getAddress().getHostName(), packet.getPort(), new String(packet.getData()));
@@ -18,7 +17,6 @@ public class ServerDemo {
             packet.setPort(clientPort);
             packet.setAddress(InetAddress.getLocalHost());
             server.send(packet);
-            server.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

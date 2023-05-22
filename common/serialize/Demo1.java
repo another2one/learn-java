@@ -62,7 +62,7 @@ public class Demo1 {
     }
 }
 
-class Student implements  Serializable {
+class Student implements Serializable {
     String name;
     int age;
 

@@ -13,6 +13,7 @@ public class Descr {
          numberAndChar();
          charAndString();
          bytesAndString();
+         special();
     }
 
     public static void numberAndNumber() {
@@ -28,13 +29,13 @@ public class Descr {
         long l = i;
         byte b = (byte)i; // 溢出
         System.out.printf("b = %d, (int)-45.89f == %d, l = %d \n", b, (int)-45.89f, l);
+        // 小数转整数 (int)-45.89f  new Double(d1).intValue(); Math.floor(-11.2)
     }
 
     public static void numberAndString() {
         // 字符串转数字 Integer.parseInt(String str)  Integer.valueOf(String str).intValue()
         // 数字转字符串 String.valueOf(int i)   Integer.toString(int i)  String.format    ""+i
-        // 小数转整数 (int)-45.89f  new Double(d1).intValue(); Math.floor(-11.2)
-        System.out.printf("字符串1转小数=%f, 小数转字符串%s, 小数1.71转整数%d, 小数1.71取整%d \n", 
+        System.out.printf("字符串1转小数=%f, 小数转字符串%s, 小数1.71转整数%d, 小数1.71取整%d \n",
             Float.parseFloat("1"), 
             String.format("%s", 1.01), 
             Double.valueOf(1.71).intValue(),
@@ -60,9 +61,14 @@ public class Descr {
 
     public static void numberAndChar() {
         // char 底层还是number 只是对应asci码
-        char a = 'A';
-        int i = a;
+        int i = 'A';
         char c = (char)i;
         System.out.printf("i=%d, c=%c \n", i, c);
     }
+
+    public static void special() {
+        // null bool
+        System.out.printf("null: %s     bool: %s \n", null+"", true+""); // +
+    }
+
 }
