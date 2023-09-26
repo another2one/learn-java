@@ -1,11 +1,14 @@
-package common.net.http;
+package common.net.http.httpserver;
 
+import com.alibaba.fastjson2.JSON;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -23,7 +26,10 @@ public class MyHttpHandler implements HttpHandler {
             responseText.append("method:").append(demo.level++).append(httpExchange.getRequestMethod()).append("<br/>");
             responseText.append("请求参数：").append(getRequestParam(httpExchange)).append("<br/>");
             responseText.append("请求头：<br/>").append(getRequestHeader(httpExchange));
-            handleResponse(httpExchange, responseText.toString());
+//            handleHtmlResponse(httpExchange, responseText.toString());
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("name", "李志");
+            handleJsonResponse(httpExchange, map);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -73,7 +79,7 @@ public class MyHttpHandler implements HttpHandler {
      * @param responsetext
      * @throws Exception
      */
-    private void handleResponse(HttpExchange httpExchange, String responsetext) throws Exception {
+    private void handleHtmlResponse(HttpExchange httpExchange, String responsetext) throws Exception {
         //生成html
         StringBuilder responseContent = new StringBuilder();
         responseContent.append("<html>")
@@ -85,7 +91,7 @@ public class MyHttpHandler implements HttpHandler {
         byte[] responseContentByte = responseContentStr.getBytes("utf-8");
 
         //设置响应头，必须在sendResponseHeaders方法之前设置！
-        httpExchange.getResponseHeaders().add("Content-Type:", "text/html;charset=GBK");
+        httpExchange.getResponseHeaders().set("Content-Type", "text/html;charset=utf-8");
 
         //设置响应码和响应体长度，必须在getResponseBody方法之前调用！
         httpExchange.sendResponseHeaders(200, responseContentByte.length);
@@ -94,5 +100,20 @@ public class MyHttpHandler implements HttpHandler {
         out.write(responseContentByte);
         out.flush();
         out.close();
+    }
+
+    /**
+     * @param t
+     * @param hashMap
+     * @throws Exception
+     */
+    private void handleJsonResponse(HttpExchange t, HashMap<String, String> hashMap) throws Exception {
+        String response = JSON.toJSONString(hashMap);
+        byte[] responseContentByte = response.getBytes("utf-8");
+        t.getResponseHeaders().set("Content-Type", "application/json");
+        t.sendResponseHeaders(200, responseContentByte.length);
+        OutputStream os = t.getResponseBody();
+        os.write(responseContentByte);
+        os.close();
     }
 }

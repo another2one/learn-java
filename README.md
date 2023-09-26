@@ -26,6 +26,7 @@ datastruct 复合结构
 - [HashSet](D:\app\java\learn-java\datastruct\HashSetDemo.java)
 - [Iterator](D:\app\java\learn-java\datastruct\IteratorDemo.java)
 - [LinkedList](D:\app\java\learn-java\datastruct\LinkedListDemo.java)
+- [stream](D:\app\java\learn-java\datastruct\StreamDemo.java)
 
 obj 面向对象
 - [继承](D:\app\java\learn-java\base\obj\extend\Demo.java)
