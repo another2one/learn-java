@@ -25,7 +25,35 @@ public class Descr {
         System.out.printf("%s, %s \n", c1, n1);
 
         for (Color a : Color.values()) {
-            // System.out.printf("%s \n", a);
+             System.out.printf("%s \n", a);
+        }
+
+        WeekDay mon = WeekDay.MON;
+        for (WeekDay a : WeekDay.values()) {
+            System.out.printf("%s \n", a);
+        }
+    }
+
+    enum WeekDay {
+        MON(1, "周一"),
+        TUE(2, "周二"),
+        SAT(3, "周三");
+
+        private final int value;
+        private final String name;
+
+        private WeekDay (int value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+
+        public int getValue() {
+            return value;
         }
     }
 }
